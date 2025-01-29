@@ -1,0 +1,49 @@
+:root {
+  --custom-black: #111113;
+}
+
+body {
+  background-color: var(--custom-black);
+  color: white;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.shadow-custom-1 {
+  box-shadow: 0px 0.5px 0px 0px #ffffff1a inset;
+}
+.shadow-custom-2 {
+  box-shadow: 0px 0px 0.5px 0px #ffffff4d inset;
+}
+
+.shadow-custom-3 {
+  box-shadow: 0px -3px 3px 0px #0000001a inset;
+}
+.shadow-custom-4 {
+  box-shadow: 0px 3px 3px 0px #ffffff1a inset;
+}
+.shadow-custom-5 {
+  box-shadow: 0px 0px 0px 1px #003d6c1f inset;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-ms-scrollbar {
+  display: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+input[type="date"] {
+  position: relative;
+  appearance: none;
+}
