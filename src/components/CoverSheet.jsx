@@ -27,7 +27,9 @@ const CoverSheet = () => {
                   label="Add new"
                   labeltextsize={"text-[12px]"}
                   containerClass={"justify-center"}
-                  onClick={() => console.log("Create new clicked")}
+                  onClick={() => {
+                    return;
+                  }}
                   gridcols={
                     "grid-cols-12 gap-1 place-content-center justify-self-center"
                   }

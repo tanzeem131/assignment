@@ -16,7 +16,9 @@ const TechpackEditorSidebar = () => {
                 label="Add new"
                 labeltextsize={"text-[12px]"}
                 containerClass={"justify-center"}
-                onClick={() => console.log("Create new clicked")}
+                onClick={() => {
+                  return;
+                }}
                 gridcols={
                   "grid-cols-12 gap-1 place-content-center justify-self-center"
                 }
@@ -43,7 +45,9 @@ const TechpackEditorSidebar = () => {
                 containerClass={
                   "justify-start rounded-[8px] border-[1px] border-[#003362]"
                 }
-                onClick={() => console.log("Create new clicked")}
+                onClick={() => {
+                  return;
+                }}
                 iconColSpan={"col-span-1 justify-self-start"}
                 textColSpan={"col-span-11 justify-self-start"}
                 rounded={"rounded-[8px]"}
@@ -60,7 +64,9 @@ const TechpackEditorSidebar = () => {
                 label="BOM Sheet"
                 labeltextsize={"text-[14px]"}
                 containerClass={"justify-start"}
-                onClick={() => console.log("Create new clicked")}
+                onClick={() => {
+                  return;
+                }}
                 iconColSpan={"col-span-1 justify-self-start"}
                 textColSpan={"col-span-11 justify-self-start"}
                 rounded={"rounded-[8px]"}
@@ -77,7 +83,9 @@ const TechpackEditorSidebar = () => {
                 label="Callouts"
                 labeltextsize={"text-[14px]"}
                 containerClass={"justify-start"}
-                onClick={() => console.log("Create new clicked")}
+                onClick={() => {
+                  return;
+                }}
                 iconColSpan={"col-span-1 justify-self-start"}
                 textColSpan={"col-span-11 justify-self-start"}
                 rounded={"rounded-[8px]"}
@@ -94,7 +102,9 @@ const TechpackEditorSidebar = () => {
                 label="Construction Details"
                 labeltextsize={"text-[14px]"}
                 containerClass={"justify-start"}
-                onClick={() => console.log("Create new clicked")}
+                onClick={() => {
+                  return;
+                }}
                 iconColSpan={"col-span-1 justify-self-start"}
                 textColSpan={"col-span-11 justify-self-start"}
                 rounded={"rounded-[8px]"}
@@ -111,7 +121,9 @@ const TechpackEditorSidebar = () => {
                 label="Colorways"
                 labeltextsize={"text-[14px]"}
                 containerClass={"justify-start"}
-                onClick={() => console.log("Create new clicked")}
+                onClick={() => {
+                  return;
+                }}
                 iconColSpan={"col-span-1 justify-self-start"}
                 textColSpan={"col-span-11 justify-self-start"}
                 rounded={"rounded-[8px]"}
@@ -128,7 +140,9 @@ const TechpackEditorSidebar = () => {
                 label="Artwork"
                 labeltextsize={"text-[14px]"}
                 containerClass={"justify-start"}
-                onClick={() => console.log("Create new clicked")}
+                onClick={() => {
+                  return;
+                }}
                 iconColSpan={"col-span-1 justify-self-start"}
                 textColSpan={"col-span-11 justify-self-start"}
                 rounded={"rounded-[8px]"}
@@ -145,7 +159,9 @@ const TechpackEditorSidebar = () => {
                 label="Labels"
                 labeltextsize={"text-[14px]"}
                 containerClass={"justify-start"}
-                onClick={() => console.log("Create new clicked")}
+                onClick={() => {
+                  return;
+                }}
                 iconColSpan={"col-span-1 justify-self-start"}
                 textColSpan={"col-span-11 justify-self-start"}
                 rounded={"rounded-[8px]"}
@@ -162,7 +178,9 @@ const TechpackEditorSidebar = () => {
                 label="Packaging"
                 labeltextsize={"text-[14px]"}
                 containerClass={"justify-start"}
-                onClick={() => console.log("Create new clicked")}
+                onClick={() => {
+                  return;
+                }}
                 iconColSpan={"col-span-1 justify-self-start"}
                 textColSpan={"col-span-11 justify-self-start"}
                 rounded={"rounded-[8px]"}
@@ -179,7 +197,9 @@ const TechpackEditorSidebar = () => {
                 label="Folding Instructions"
                 labeltextsize={"text-[14px]"}
                 containerClass={"justify-start"}
-                onClick={() => console.log("Create new clicked")}
+                onClick={() => {
+                  return;
+                }}
                 iconColSpan={"col-span-1 justify-self-start"}
                 textColSpan={"col-span-11 justify-self-start"}
                 rounded={"rounded-[8px]"}
@@ -196,7 +216,9 @@ const TechpackEditorSidebar = () => {
                 label="Measurement Specifications"
                 labeltextsize={"text-[14px]"}
                 containerClass={"justify-start"}
-                onClick={() => console.log("Create new clicked")}
+                onClick={() => {
+                  return;
+                }}
                 iconColSpan={"col-span-1 justify-self-start"}
                 textColSpan={"col-span-11 justify-self-start"}
                 rounded={"rounded-[8px]"}
@@ -215,7 +237,9 @@ const TechpackEditorSidebar = () => {
                 label="Load Techpack"
                 labeltextsize={"text-[14px]"}
                 containerClass={"justify-start"}
-                onClick={() => console.log("Create new clicked")}
+                onClick={() => {
+                  return;
+                }}
                 iconColSpan={"col-span-4 justify-self-end"}
                 textColSpan={"col-span-8 justify-self-start"}
                 rounded={"rounded-[12px]"}

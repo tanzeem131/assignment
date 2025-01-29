@@ -62,7 +62,9 @@ const Library = () => {
               label="Create new"
               labeltextsize={"text-[14px]"}
               containerClass={"col-span-2 justify-end"}
-              onClick={() => console.log("Create new clicked")}
+              onClick={() => {
+                return;
+              }}
               gridcols={"grid-cols-6"}
               iconColSpan={"col-span-1"}
               textColSpan={"col-span-5"}

@@ -14,7 +14,9 @@ const TechpackEditorNavbar = () => {
                 imgsize={"w-3 h-3"}
                 label=""
                 containerClass={"col-span-2 justify-end"}
-                onClick={() => console.log("Create new clicked")}
+                onClick={() => {
+                  return;
+                }}
                 gridcols={"grid-cols-1"}
                 iconColSpan={"col-span-1"}
                 textColSpan={""}
@@ -39,7 +41,9 @@ const TechpackEditorNavbar = () => {
                 imgsize={""}
                 label="Preview"
                 containerClass={"col-span-2 justify-end"}
-                onClick={() => console.log("Create new clicked")}
+                onClick={() => {
+                  return;
+                }}
                 iconColSpan={"col-span-1"}
                 textColSpan={"col-span-5"}
                 rounded={"rounded-[12px]"}
@@ -57,7 +61,9 @@ const TechpackEditorNavbar = () => {
                 imgsize={""}
                 label="Save"
                 containerClass={"col-span-2 justify-end"}
-                onClick={() => console.log("Create new clicked")}
+                onClick={() => {
+                  return;
+                }}
                 iconColSpan={"col-span-1"}
                 textColSpan={"col-span-5"}
                 rounded={"rounded-[12px]"}
