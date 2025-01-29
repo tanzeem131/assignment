@@ -7,7 +7,7 @@ import Button from "./Button";
 const CoverSheet = () => {
   return (
     <>
-      <div className="w-[1200px] h-[736px] bg-[#18191B] shadow-custom-1 shadow-custom-1 rounded-[16px] px-[16px] py-[12px] space-y-[16px]">
+      <div className="max-w-[1150px] h-[736px] bg-[#18191B] shadow-custom-1 shadow-custom-1 rounded-[16px] px-[16px] py-[12px] space-y-[16px]">
         <div className="h-[62px">
           <div className="flex justify-between">
             <div className="space-y-[8px]">
@@ -34,7 +34,7 @@ const CoverSheet = () => {
                   iconColSpan={"col-span-3"}
                   textColSpan={"col-span-9"}
                   rounded={"rounded-[8px]"}
-                  width={"w-96px"}
+                  width={"w-[96px]"}
                   height={"h-[28px]"}
                   buttonClass={"bg-[#212225]"}
                 />
@@ -43,7 +43,7 @@ const CoverSheet = () => {
           </div>
           <div className="border-b-2 border-[#272A2D] h-[16px] w-full"></div>
         </div>
-        <div className="h-[246px] flex flex-wrap w-[1200px] space-x-16 space-y-6">
+        <div className="h-[246px] flex flex-wrap w-[1200px] space-x-14 space-y-6">
           <Input
             label={"Brand"}
             type={"text"}

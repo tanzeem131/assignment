@@ -3,9 +3,9 @@ import CoverSheet from "./CoverSheet";
 
 const TechpackEditorBody = () => {
   return (
-    <div>
+    <>
       <CoverSheet />
-    </div>
+    </>
   );
 };
 
