@@ -4,7 +4,7 @@ import Library from "./Library";
 import Search from "./Search";
 import Techpack from "./Techpack";
 
-const Page1 = () => {
+const Layout1 = () => {
   return (
     <div className="space-y-[24px] py-[12px] px-[24px] m-0">
       <Heading />
@@ -15,4 +15,4 @@ const Page1 = () => {
   );
 };
 
-export default Page1;
+export default Layout1;

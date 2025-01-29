@@ -6,7 +6,7 @@ import CoverSheet from "./CoverSheet";
 import BOMSheet from "./BOMSheet";
 import TechpackEditorNavbar from "./TechpackEditorNavbar";
 
-function Page2() {
+function Layout2() {
   return (
     <div className="grid grid-rows-12 h-[800px] p-6">
       <div className="row-span-1">
@@ -26,4 +26,4 @@ function Page2() {
   );
 }
 
-export default Page2;
+export default Layout2;
