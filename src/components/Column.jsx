@@ -1,6 +1,8 @@
 import React from "react";
 
 const Column = ({ title, data, isImage = false }) => {
+  console.log(`Column: ${title} - Data Length:`, data.length);
+
   return (
     <div className="flex flex-col items-center h-full">
       <div className="text-[#EDEEF0] text-center text-[14px] font-[500] mb-2">

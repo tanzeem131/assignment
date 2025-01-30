@@ -1,8 +1,53 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Button from "./Button";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setTechpack } from "../utils/techpackSlice";
+import axios from "axios";
+import { BASE_URL } from "../utils/config";
 
 const Library = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [data, setData] = useState([]);
+  const [formData, setFormData] = useState({
+    image: "",
+    name: "",
+  });
+
+  const dispatch = useDispatch();
+
+  const handleProduct = async () => {
+    try {
+      const res = await axios.get(BASE_URL + "/get-techpackCatalogue");
+      dispatch(setTechpack(res.data));
+      setData(res.data.items);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    handleProduct();
+  }, []);
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async () => {
+    try {
+      await axios.post(`${BASE_URL}/add-techpackCatalogue`, formData);
+      handleProduct();
+      setModalOpen(false);
+      setFormData({
+        image: "",
+        item: "",
+      });
+    } catch (error) {
+      console.error("Error adding Techpack item:", error);
+    }
+  };
+
   return (
     <div className="flex justify-center">
       <div className="grid grid-cols-24 w-[1392px] h-[36px]">
@@ -20,7 +65,7 @@ const Library = () => {
                 />
               </div>
               <div className="col-span-4 text-[#EDEEF0] text-[12px] font-[500] flex items-center justify-start pl-2 w-[51px] h-[16px]">
-                120/500
+                {data && data.length} / 500
               </div>
             </div>
           </div>
@@ -44,7 +89,7 @@ const Library = () => {
             label="Upload"
             labeltextsize={"text-[14px]"}
             containerClass={"col-span-2 justify-start"}
-            onClick={() => console.log("Upload clicked")}
+            onClick={() => setModalOpen(true)}
             gridcols={"grid-cols-6"}
             iconColSpan={"col-span-2"}
             textColSpan={"col-span-4"}
@@ -76,6 +121,43 @@ const Library = () => {
           </Link>
         </div>
       </div>
+      {modalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-[#212225] p-6 rounded-lg w-[400px] shadow-lg">
+            <h2 className="text-white text-xl font-bold mb-4">
+              Add New Techpack Item
+            </h2>
+
+            {/* Form Fields */}
+            {["image", "name"].map((field) => (
+              <input
+                key={field}
+                name={field}
+                value={formData[field]}
+                onChange={handleInputChange}
+                placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+                className="w-full mb-3 p-2 rounded bg-[#2A2B2E] text-white"
+              />
+            ))}
+
+            {/* Buttons */}
+            <div className="flex justify-between">
+              <button
+                onClick={() => setModalOpen(false)}
+                className="text-gray-400 hover:text-white"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSubmit}
+                className="bg-blue-500 px-4 py-2 rounded text-white"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
