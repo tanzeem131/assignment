@@ -12,7 +12,7 @@ function Layout2() {
       <div className="row-span-1">
         <TechpackEditorNavbar />
       </div>
-      <div className="row-span-11 flex gap-4 overflow-hidden">
+      <div className="row-span-11 flex gap-4">
         <TechpackEditorSidebar />
         <div className="flex">
           <Routes>

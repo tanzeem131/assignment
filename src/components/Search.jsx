@@ -6,9 +6,10 @@ const Search = () => {
       <div className="w-[640px] h-full mx-auto border-[0.4px] border-[#003362] bg-[#18191B] rounded-2xl shadow-custom-1 shadow-custom-2">
         <div className="py-[12px] px-[16px] flex flex-col gap-[10px]">
           <div className="h-[40px] flex justify-between">
-            <div className="text-[14px] text-[#777B84] ml-2 mt-2">
-              Search for...
-            </div>
+            <input
+              placeholder="Search for..."
+              className="text-[14px] text-[#777B84] ml-2 mt-2"
+            ></input>
             <div className="text-[#777B84]">
               <img src="/photo-upload.svg"></img>
             </div>
