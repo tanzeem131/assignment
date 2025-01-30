@@ -25,11 +25,14 @@ const Techpack = ({ searchTerm }) => {
   );
 
   return (
-    <div className="flex justify-center">
-      <div className="flex flex-wrap gap-6 w-[1392px]">
+    <div className="flex">
+      <div className="flex flex-wrap lg:justify-start md:justify-start sm:justify-center justify-center gap-6 max-w-[1392px]">
         {filteredData.length > 0 ? (
           filteredData.map((item, index) => (
-            <div key={index} className="w-[212px] h-[200px] cursor-pointer">
+            <div
+              key={index}
+              className="sm:w-[212px] sm:h-[200px] w-[150px] h-[150px] cursor-pointer"
+            >
               <img
                 src={item.image}
                 alt={item.name}

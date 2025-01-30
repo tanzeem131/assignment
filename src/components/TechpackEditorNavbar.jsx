@@ -5,7 +5,7 @@ import Button from "./Button";
 const TechpackEditorNavbar = () => {
   return (
     <div>
-      <div className="flex justify-between items-center w-full">
+      <div className="flex justify-between items-center max-w-full">
         <div className="flex justify-between items-center gap-4">
           <div>
             <Link to={"/"}>
@@ -28,7 +28,7 @@ const TechpackEditorNavbar = () => {
             </Link>
           </div>
           <div>
-            <div className="text-[18px] text-[#EDEEF0] font-[500]">
+            <div className="sm:text-[18px] text-[14px] text-[#EDEEF0] font-[500]">
               Techpack Editor
             </div>
           </div>

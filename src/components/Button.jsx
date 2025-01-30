@@ -23,7 +23,7 @@ const Button = ({
       onClick={onClick}
     >
       <div
-        className={`${width} ${height} ${rounded} p-1 border-[0.4px] border-[#272A2D] shadow-custom-1 shadow-custom-2 bg-[#212225] grid ${gridcols} place-items-center ${buttonClass}`}
+        className={`${width} ${height} ${rounded} sm:p-1 p-0 border-[0.4px] border-[#272A2D] shadow-custom-1 shadow-custom-2 bg-[#212225] grid ${gridcols} place-items-center ${buttonClass}`}
       >
         {iconSrc && (
           <div
