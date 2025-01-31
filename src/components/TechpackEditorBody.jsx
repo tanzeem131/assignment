@@ -1,12 +1,10 @@
 import React from "react";
 import CoverSheet from "./CoverSheet";
 
-const TechpackEditorBody = () => {
+export default function TechpackEditorBody() {
   return (
     <>
       <CoverSheet />
     </>
   );
-};
-
-export default TechpackEditorBody;
+}

@@ -6,9 +6,6 @@ const bomSlice = createSlice({
     data: [],
   },
   reducers: {
-    addBom: (state, action) => {
-      return action.payload;
-    },
     setBom: (state, action) => {
       state.data = action.payload;
     },
@@ -18,5 +15,5 @@ const bomSlice = createSlice({
   },
 });
 
-export const { addBom, setBom, removeBom } = bomSlice.actions;
+export const { setBom, removeBom } = bomSlice.actions;
 export default bomSlice.reducer;

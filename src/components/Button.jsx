@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({
+export default function Button({
   iconSrc,
   label,
   onClick,
@@ -16,7 +16,7 @@ const Button = ({
   rounded,
   imgsize,
   labeltextsize,
-}) => {
+}) {
   return (
     <div
       className={`flex items-center cursor-pointer ${containerClass}`}
@@ -42,6 +42,4 @@ const Button = ({
       </div>
     </div>
   );
-};
-
-export default Button;
+}

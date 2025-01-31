@@ -1,12 +1,11 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "./Navbar";
 
-const Body = () => {
+export default function Body() {
   return (
     <div>
       <NavBar />
       <Outlet />
     </div>
   );
-};
-export default Body;
+}

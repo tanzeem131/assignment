@@ -4,7 +4,7 @@ import Library from "./Library";
 import Search from "./Search";
 import Techpack from "./Techpack";
 
-const Layout1 = () => {
+export default function Layout1() {
   const [searchTerm, setSearchTerm] = useState("");
   return (
     <div className="space-y-[24px] sm:py-[12px] py-[2px] sm:px-[24px] px-[4px] m-0">
@@ -14,6 +14,4 @@ const Layout1 = () => {
       <Techpack searchTerm={searchTerm} />
     </div>
   );
-};
-
-export default Layout1;
+}

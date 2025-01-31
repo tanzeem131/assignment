@@ -6,7 +6,7 @@ import { setTechpack } from "../utils/techpackSlice";
 import axios from "axios";
 import { BASE_URL } from "../utils/config";
 
-const Library = () => {
+export default function Library() {
   const [modalOpen, setModalOpen] = useState(false);
   const [data, setData] = useState([]);
   const [formData, setFormData] = useState({
@@ -36,7 +36,7 @@ const Library = () => {
 
   const handleSubmit = async () => {
     try {
-      await axios.post(`${BASE_URL}/add-techpackCatalogue`, formData);
+      await axios.post(BASE_URL + "/add-techpackCatalogue", formData);
       handleProduct();
       setModalOpen(false);
       setFormData({
@@ -65,7 +65,7 @@ const Library = () => {
                     className="w-4 h-4"
                   />
                 </div>
-                <div className="col-span-4 text-[#EDEEF0] text-[12px] font-[500] flex items-center justify-start pl-2 max-w-[51px] h-[16px]">
+                <div className="col-span-4 text-[#EDEEF0] text-[12px] font-[500] flex items-center justify-start pl-2 w-[51px] h-[16px]">
                   {data && data.length} / 500
                 </div>
               </div>
@@ -77,7 +77,7 @@ const Library = () => {
             <button className="bg-[#212225] sm:w-[36px] w-[24px] sm:h-[36px] h-[24px] sm:rounded-xl rounded-sm shadow-custom-1 shadow-custom-2 flex justify-center items-center">
               <img
                 src="/filter-btn.svg"
-                className="w-4 h-4"
+                className="w-3 h-3"
                 alt="Filter-Button"
               />
             </button>
@@ -132,7 +132,6 @@ const Library = () => {
               Add New Techpack Item
             </h2>
 
-            {/* Form Fields */}
             {["image", "name"].map((field) => (
               <input
                 key={field}
@@ -144,7 +143,6 @@ const Library = () => {
               />
             ))}
 
-            {/* Buttons */}
             <div className="flex justify-between">
               <button
                 onClick={() => setModalOpen(false)}
@@ -164,6 +162,4 @@ const Library = () => {
       )}
     </div>
   );
-};
-
-export default Library;
+}

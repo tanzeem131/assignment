@@ -1,6 +1,6 @@
 import React from "react";
 
-const Search = ({ searchTerm, setSearchTerm }) => {
+export default function Search({ searchTerm, setSearchTerm }) {
   return (
     <div className="h-[100px]">
       <div className="max-w-[640px] max-h-full mx-auto border-[0.4px] border-[#003362] bg-[#18191B] rounded-2xl shadow-custom-1 shadow-custom-2">
@@ -10,7 +10,7 @@ const Search = ({ searchTerm, setSearchTerm }) => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search for..."
-              className="lg:text-[14px] md:text-[14px] sm:text-[14px] text-[14px] text-[#777B84] ml-2 mt-2"
+              className="text-[14px] text-[#777B84] ml-2 mt-2 max-w-[70%] focus:outline-none"
             ></input>
             <div className="text-[#777B84]">
               <img src="/photo-upload.svg"></img>
@@ -26,6 +26,4 @@ const Search = ({ searchTerm, setSearchTerm }) => {
       </div>
     </div>
   );
-};
-
-export default Search;
+}

@@ -1,51 +1,43 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Input from "./Input";
 import DropdownInput from "./DropDown";
 import Button from "./Button";
 
-const CoverSheet = () => {
+export default function CoverSheet() {
   return (
     <>
-      <div className="max-w-[1150px] h-[736px] bg-[#18191B] shadow-custom-1 shadow-custom-1 rounded-[16px] px-[16px] py-[12px] space-y-[16px]">
+      <div className="max-w-[1150px] min-w-[250px] min-h-[736px] bg-[#18191B] shadow-custom-1 shadow-custom-1 rounded-[16px] px-[16px] py-[12px] space-y-[16px]">
         <div className="h-[62px]">
           <div className="flex justify-between">
-            <div className="space-y-[8px]">
-              <div className="text-[16px] font-[600] text-[#EDEEF0]">
+            <div className="md:space-y-[8px] space-y-0">
+              <div className="sm:text-[16px] text-[14px] md:font-[600] font-[400] text-[#EDEEF0]">
                 Cover Sheet
               </div>
-              <div className="text-[12px] font-[400] text-[#EDEEF0]">
+              <div className="sm:text-[12px] text-[11px] md:font-[400] font-[300] text-[#EDEEF0]">
                 Provide a detailed overview of the garment and essential
                 metadata for quick reference.
               </div>
             </div>
             <div>
-              <Link to={"/techpack-editor"}>
-                <Button
-                  iconSrc="/plus-icon.svg"
-                  imgsize={"w-[10px] h-[10px]"}
-                  label="Add new"
-                  labeltextsize={"text-[12px]"}
-                  containerClass={"justify-center"}
-                  onClick={() => {
-                    return;
-                  }}
-                  gridcols={
-                    "grid-cols-12 gap-1 place-content-center justify-self-center"
-                  }
-                  iconColSpan={"col-span-3"}
-                  textColSpan={"col-span-9"}
-                  rounded={"rounded-[8px]"}
-                  width={"w-[96px]"}
-                  height={"h-[28px]"}
-                  buttonClass={"bg-[#212225]"}
-                />
-              </Link>
+              <Button
+                iconSrc="/plus-icon.svg"
+                imgsize="w-[10px] h-[10px]"
+                label="Add new"
+                labeltextsize="md:text-[12px] text-[11px]"
+                containerClass="justify-center"
+                gridcols="grid-cols-12 md:gap-1 gap-0 place-content-center"
+                iconColSpan="col-span-3"
+                textColSpan="col-span-9"
+                rounded="rounded-[8px]"
+                width="md:w-[96px] w-[70px]"
+                height="h-[28px]"
+                buttonClass="bg-[#212225]"
+              />
             </div>
           </div>
           <div className="border-b-2 border-[#272A2D] h-[16px] w-full"></div>
         </div>
-        <div className="h-[246px] flex flex-wrap w-[1200px] space-x-14 space-y-6">
+        <div className="h-[246px] md:mt-15 sm:mt-15 mt-15 lg:mt-0 xl:mt-0 flex flex-wrap max-w-[1150px] min-w-[250px] gap-x-4 lg:gap-x-6 md:gap-y-6 gap-y-8 md:overflow-visible overflow-y-auto scrollbar-hide">
           <Input
             label={"Brand"}
             type={"text"}
@@ -55,8 +47,7 @@ const CoverSheet = () => {
           <Input
             label={"Designer"}
             type={"text"}
-            placeholderte
-            xt={"Placeholder"}
+            placeholdertext={"Placeholder"}
             iconsource={""}
           />
           <Input
@@ -105,20 +96,26 @@ const CoverSheet = () => {
             iconsource={"/calendar_icon.svg"}
           />
         </div>
-        <div className="h-[308px] space-x-4 space-y-4 mt-8">
-          <div>
-            <div className="w-fit h-[20px] text-[14px] font-[500] text-[#777B84]">
-              Upload Image/Sketch
-            </div>
+        <div className="min-h-[320px] space-x-4 space-y-4 md:mt-8 mt-2">
+          <div className="w-fit h-[20px] sm:text-[14px] text-[12px]  font-[500] text-[#777B84]">
+            Upload Image/Sketch
           </div>
-          <div className="flex gap-6">
-            <img src="/cover-sheet.png" className="w-[336px] h-[280px]"></img>
-            <img src="/cover-sheet-2.png" className="w-[336px] h-[280px]"></img>
+          <div className="flex flex-wrap sm:gap-6 gap-2">
+            <div>
+              <img
+                src="/cover-sheet.png"
+                className="xl:w-[300px] xl:h-[250px] w-[150px] h-[130px]"
+              ></img>
+            </div>
+            <div>
+              <img
+                src="/cover-sheet-2.png"
+                className="xl:w-[300px] xl:h-[250px] w-[150px] h-[130px]"
+              ></img>
+            </div>
           </div>
         </div>
       </div>
     </>
   );
-};
-
-export default CoverSheet;
+}

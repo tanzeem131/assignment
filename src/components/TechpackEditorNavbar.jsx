@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Button from "./Button";
 
-const TechpackEditorNavbar = () => {
+export default function TechpackEditorNavbar() {
   return (
     <div>
-      <div className="flex justify-between items-center max-w-full">
+      <div className="flex justify-between items-center xl:w-full lg:w-full md:w-[750px] sm:w-[750px] w-[99%] ">
         <div className="flex justify-between items-center gap-4">
           <div>
             <Link to={"/"}>
@@ -28,7 +28,7 @@ const TechpackEditorNavbar = () => {
             </Link>
           </div>
           <div>
-            <div className="sm:text-[18px] text-[14px] text-[#EDEEF0] font-[500]">
+            <div className="md:text-[18px] text-[14px] text-[#EDEEF0] font-[500]">
               Techpack Editor
             </div>
           </div>
@@ -78,6 +78,4 @@ const TechpackEditorNavbar = () => {
       </div>
     </div>
   );
-};
-
-export default TechpackEditorNavbar;
+}

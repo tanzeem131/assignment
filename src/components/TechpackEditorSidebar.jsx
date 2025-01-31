@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Button from "./Button";
 
-const TechpackEditorSidebar = () => {
+export default function TechpackEditorSidebar() {
   const location = useLocation();
   const [activeButton, setActiveButton] = useState(location.pathname);
 
@@ -11,7 +11,10 @@ const TechpackEditorSidebar = () => {
   };
 
   const navItems = [
-    { label: "Cover Sheet", path: "/techpack-editor/coversheet" },
+    {
+      label: "Cover Sheet",
+      path: "/techpack-editor/coversheet" && "/techpack-editor",
+    },
     { label: "BOM Sheet", path: "/techpack-editor/bomsheet" },
     { label: "Callouts", path: "/techpack-editor/callouts" },
     {
@@ -34,42 +37,42 @@ const TechpackEditorSidebar = () => {
 
   return (
     <div className="flex gap-6 justify-between">
-      <div className="w-[300px] h-[736px] bg-[#18191B] shadow-custom-1 rounded-[16px] p-3 space-y-3">
+      <div className="md:w-[300px] w-[150px] h-[736px] bg-[#18191B] shadow-custom-1 rounded-[16px] md:p-3 p-1 space-y-3">
         <div className="flex justify-between">
-          <div className="text-[16px] font-[600] text-[#EDEEF0]">Sections</div>
-          <Link to={"/techpack-editor"}>
-            <Button
-              iconSrc="/plus-icon.svg"
-              imgsize="w-[10px] h-[10px]"
-              label="Add new"
-              labeltextsize="text-[12px]"
-              containerClass="justify-center"
-              gridcols="grid-cols-12 gap-1 place-content-center"
-              iconColSpan="col-span-3"
-              textColSpan="col-span-9"
-              rounded="rounded-[8px]"
-              width="w-96px"
-              height="h-[28px]"
-              buttonClass="bg-[#212225]"
-            />
-          </Link>
+          <div className="text-[16px] md:font-[600] font-[400] text-[#EDEEF0]">
+            Sections
+          </div>
+          <Button
+            iconSrc="/plus-icon.svg"
+            imgsize="w-[10px] h-[10px]"
+            label="Add new"
+            labeltextsize="md:text-[12px] text-[11px]"
+            containerClass="justify-center"
+            gridcols="grid-cols-12 md:gap-1 gap-0 place-content-center"
+            iconColSpan="col-span-3"
+            textColSpan="col-span-9"
+            rounded="rounded-[8px]"
+            width="md:w-[96px] w-[70px]"
+            height="h-[28px]"
+            buttonClass="bg-[#212225]"
+          />
         </div>
         <div className="border-b-2 border-[#272A2D] h-[1px] w-full"></div>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col md:gap-4 gap-3">
           {navItems.map((item) => (
             <Link to={item.path} key={item.label}>
               <Button
                 iconSrc="/dot-icon.svg"
-                imgsize="w-4 h-4"
+                imgsize="md:w-4 md:h-4 w-3 h-3"
                 label={item.label}
-                labeltextsize="text-[14px]"
+                labeltextsize="lg:text-[14px] text-[12px]"
                 containerClass="justify-start"
                 onClick={() => handleButtonClick(item.path)}
                 iconColSpan="col-span-1 justify-self-start"
                 textColSpan="col-span-11 justify-self-start"
                 rounded="rounded-[8px]"
-                gridcols="grid-cols-12 place-content-start"
-                width="w-full"
+                gridcols="grid-cols-12 place-content-center"
+                width="xl:w-full lg:w-full md:w-20px sm:w-20px w-14px"
                 height="h-[32px]"
                 buttonClass={`bg-[#212225] ${
                   activeButton === item.path
@@ -80,19 +83,19 @@ const TechpackEditorSidebar = () => {
             </Link>
           ))}
         </div>
-        <div className="mt-40">
+        <div className="flex flex-col justify-center items-center mt-40">
           <Link to={"/techpack-editor"}>
             <Button
               iconSrc="/drive-icon.svg"
-              imgsize="w-4 h-4"
+              imgsize="lg:w-4 lg:h-4 w-3 h-3"
               label="Load Techpack"
-              labeltextsize="text-[14px]"
+              labeltextsize="lg:text-[14px] text-[12px]"
               containerClass="justify-start"
-              iconColSpan="col-span-4 justify-self-end"
-              textColSpan="col-span-8 justify-self-start"
+              iconColSpan="lg:col-span-4 col-span-2 justify-self-end"
+              textColSpan="lg:col-span-8 col-span-10 justify-self-start"
               rounded="rounded-[12px]"
               gridcols="grid-cols-12 gap-2"
-              width="w-full"
+              width="xl:w-full lg:w-full md:w-20px sm:w-20px w-16px"
               height="h-[36px]"
               buttonClass="bg-[#212225]"
             />
@@ -101,6 +104,4 @@ const TechpackEditorSidebar = () => {
       </div>
     </div>
   );
-};
-
-export default TechpackEditorSidebar;
+}

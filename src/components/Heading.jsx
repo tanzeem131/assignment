@@ -1,6 +1,6 @@
 import React from "react";
 
-const Heading = () => {
+export default function Heading() {
   return (
     <div className="text-center w-full h=[64px] space-y-[4px]">
       <div className="lg:text-[32px] md:text-[32px] sm:text-[26px] text-[20px] font-[600]">
@@ -11,6 +11,4 @@ const Heading = () => {
       </div>
     </div>
   );
-};
-
-export default Heading;
+}

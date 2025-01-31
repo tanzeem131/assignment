@@ -6,9 +6,6 @@ const techpackSlice = createSlice({
     data: [],
   },
   reducers: {
-    addTechpack: (state, action) => {
-      return action.payload;
-    },
     setTechpack: (state, action) => {
       state.data = action.payload;
     },
@@ -18,6 +15,5 @@ const techpackSlice = createSlice({
   },
 });
 
-export const { addTechpack, setTechpack, removeTechpack } =
-  techpackSlice.actions;
+export const { setTechpack, removeTechpack } = techpackSlice.actions;
 export default techpackSlice.reducer;

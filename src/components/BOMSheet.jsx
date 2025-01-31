@@ -6,7 +6,7 @@ import { setBom } from "../utils/bomSlice";
 import { BASE_URL } from "../utils/config";
 import Column from "./Column";
 
-const BOMSheet = () => {
+export default function BOMSheet() {
   const [dropdown, setDropdown] = useState(false);
   const [bomdata, setBomData] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
@@ -18,7 +18,7 @@ const BOMSheet = () => {
     quality: "",
     colorCode: "",
     supplier: "",
-    customPrice: "",
+    cost: "",
   });
 
   const handleDropdown = () => {
@@ -32,7 +32,6 @@ const BOMSheet = () => {
       const res = await axios.get(BASE_URL + "/get-bom");
       dispatch(setBom(res.data));
       setBomData(res.data.items);
-      console.log("BOM Data:", bomdata);
     } catch (err) {
       console.error(err);
     }
@@ -44,7 +43,7 @@ const BOMSheet = () => {
 
   const handleSubmit = async () => {
     try {
-      await axios.post(`${BASE_URL}/add-bom`, formData);
+      await axios.post(BASE_URL + "/add-bom", formData);
       setModalOpen(false);
       setFormData({
         image: "",
@@ -54,7 +53,7 @@ const BOMSheet = () => {
         quality: "",
         colorCode: "",
         supplier: "",
-        customPrice: "",
+        cost: "",
       });
     } catch (error) {
       console.error("Error adding BOM item:", error);
@@ -66,15 +65,15 @@ const BOMSheet = () => {
   }, [modalOpen]);
 
   return (
-    <div>
-      <div className="w-[1150px] h-[736px] bg-[#18191B] shadow-custom-1 shadow-custom-1 rounded-[16px] px-[16px] py-[12px] space-y-[16px]">
+    <>
+      <div className="max-w-[1150px] min-w-[250px] min-h-[736px] bg-[#18191B] shadow-custom-1 shadow-custom-1 rounded-[16px] md:px-[16px] px-[4px] md:py-[12px] py-[6px] space-y-[16px]">
         <div className="h-[62px]">
           <div className="flex justify-between">
-            <div className="space-y-[8px]">
-              <div className="text-[16px] font-[600] text-[#EDEEF0]">
+            <div className="md:space-y-[8px] space-y-0">
+              <div className="sm:text-[16px] text-[14px] md:font-[600] font-[400] text-[#EDEEF0]">
                 Bill of Materials (BOM)
               </div>
-              <div className="text-[12px] font-[400] text-[#EDEEF0]">
+              <div className="sm:text-[12px] text-[11px] md:font-[400] font-[300] text-[#EDEEF0]">
                 List all materials required for production, specifying color
                 codes, quantities, and suppliers for accuracy.
               </div>
@@ -82,20 +81,18 @@ const BOMSheet = () => {
             <div className="relative">
               <Button
                 iconSrc="/plus-icon.svg"
-                imgsize={"w-[10px] h-[10px]"}
+                imgsize="w-[10px] h-[10px]"
                 label="Add a column or row"
-                labeltextsize={"text-[12px]"}
-                containerClass={"justify-center"}
+                labeltextsize="md:text-[12px] text-[8px]"
+                containerClass="justify-center"
                 onClick={handleDropdown}
-                gridcols={
-                  "grid-cols-12 gap-1 place-content-center justify-self-center"
-                }
-                iconColSpan={"col-span-2"}
-                textColSpan={"col-span-10"}
-                rounded={"rounded-[8px]"}
-                width={"w-[150px]"}
-                height={"h-[36px]"}
-                buttonClass={"bg-[#212225]"}
+                gridcols="grid-cols-12 md:gap-1 gap-0 place-content-center"
+                iconColSpan="col-span-3"
+                textColSpan="col-span-9"
+                rounded="rounded-[8px]"
+                width="md:w-[160px] w-[70px]"
+                height="h-[28px]"
+                buttonClass="bg-[#212225]"
               />
               {dropdown && (
                 <div className="absolute mt-2 w-[150px] bg-[#212225] border border-[#272A2D] rounded-[8px] shadow-lg max-h-[228px] overflow-auto z-10 scrollbar-hide">
@@ -126,7 +123,7 @@ const BOMSheet = () => {
           style={{
             gridTemplateColumns: "0.3fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
           }}
-          className="h-[90%] grid gap-0 w-full rounded-2xl bg-[#111113] p-2 overflow-y-auto scrollbar-hide scrollbar-none"
+          className="h-[90%] grid gap-0 rounded-2xl md:mt-15 sm:mt-15 mt-15 lg:mt-0 xl:mt-0 bg-[#111113] md:p-2 p-1 overflow-y-auto scrollbar-hide scrollbar-none"
         >
           <Column title="Id" data={bomdata.map((_, index) => index + 1)} />
           <Column
@@ -152,20 +149,15 @@ const BOMSheet = () => {
             title="Supplier"
             data={bomdata.map((item) => item.supplier)}
           />
-          <Column
-            title="customPrice"
-            data={bomdata.map((item) => item.customPrice)}
-          />
+          <Column title="cost" data={bomdata.map((item) => item.cost)} />
         </div>
       </div>
-
       {modalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-[#212225] p-6 rounded-lg w-[400px] shadow-lg">
             <h2 className="text-white text-xl font-bold mb-4">
               Add New BOM Item
             </h2>
-
             {[
               "image",
               "item",
@@ -174,7 +166,7 @@ const BOMSheet = () => {
               "quality",
               "colorCode",
               "supplier",
-              "customPrice",
+              "cost",
             ].map((field) => (
               <input
                 key={field}
@@ -203,8 +195,6 @@ const BOMSheet = () => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
-};
-
-export default BOMSheet;
+}
