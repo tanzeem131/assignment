@@ -11,14 +11,15 @@ export default function BOMSheet() {
   const [bomdata, setBomData] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [formData, setFormData] = useState({
-    image: "",
-    item: "",
-    description: "",
-    quantity: "",
-    quality: "",
-    colorCode: "",
-    supplier: "",
-    cost: "",
+    image:
+      "https://s3-alpha-sig.figma.com/img/5919/4539/93e53bbf126cb1b8939bfca689a1c65b?Expires=1739145600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=cB-UsKw7~Fmjn6GzXVtBAibSZLJUU1P-~jvH7afdIKWnyWX0mYVhSoZTqnSyUIwgWZNny7lqN1gGGS9A2kNcH284ZdjHITtuCyl5u-T-cdAFqNpv1vgLumXrACg14KQ80igjnuPdblKvmtkjn7DQpla8ITeHz0WNCqDg~40gvxCT-duZEr4cAZboFsqhvBSM2Y9LF7OAcSsYkZMNOpIT0BJj39ZAvfmye0rf1cOD8VFMC1lbwppIYp-5KlbqcSs0PgRWWsQOLDaIyU3-LWKyfdg-~vjDnqNlYCNOT3XDnGGcPS97AYG4f75txyZZV9QIeyvND8ddqPZJViDZOZmCeQ__",
+    item: "Secondary Fabric",
+    description:
+      "The primary material used for crafting the main body of the product.",
+    quantity: "2",
+    quality: "polyester",
+    colorCode: "TPG - 2335",
+    supplier: "Nexium",
   });
 
   const handleDropdown = () => {
@@ -53,7 +54,6 @@ export default function BOMSheet() {
         quality: "",
         colorCode: "",
         supplier: "",
-        cost: "",
       });
     } catch (error) {
       console.error("Error adding BOM item:", error);
@@ -121,7 +121,7 @@ export default function BOMSheet() {
         </div>
         <div
           style={{
-            gridTemplateColumns: "0.3fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
+            gridTemplateColumns: "0.3fr 1fr 1fr 2fr 1fr 1fr 1fr 1fr",
           }}
           className="h-[90%] grid gap-0 rounded-2xl md:mt-15 sm:mt-15 mt-15 lg:mt-0 xl:mt-0 bg-[#111113] md:p-2 p-1 overflow-y-auto scrollbar-hide scrollbar-none"
         >
@@ -149,7 +149,6 @@ export default function BOMSheet() {
             title="Supplier"
             data={bomdata.map((item) => item.supplier)}
           />
-          <Column title="cost" data={bomdata.map((item) => item.cost)} />
         </div>
       </div>
       {modalOpen && (
@@ -157,6 +156,9 @@ export default function BOMSheet() {
           <div className="bg-[#212225] p-6 rounded-lg w-[400px] shadow-lg">
             <h2 className="text-white text-xl font-bold mb-4">
               Add New BOM Item
+            </h2>
+            <h2 className="text-white text-[12px] font-thin mb-1">
+              This is the default data for convenience,you can change the value
             </h2>
             {[
               "image",
@@ -166,7 +168,6 @@ export default function BOMSheet() {
               "quality",
               "colorCode",
               "supplier",
-              "cost",
             ].map((field) => (
               <input
                 key={field}

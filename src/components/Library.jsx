@@ -10,8 +10,9 @@ export default function Library() {
   const [modalOpen, setModalOpen] = useState(false);
   const [data, setData] = useState([]);
   const [formData, setFormData] = useState({
-    image: "",
-    name: "",
+    image:
+      "https://s3-alpha-sig.figma.com/img/5154/4878/e13724b0801750236f385ee133ddd835?Expires=1739145600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=U4v~Orqsx9TyQSQpIduzTs-X~6BavqPFik5ZAdqhOSVE35sg3QsE4p2YOUPYsMuBYB0m7OaNK5pfA7oWaoz5P8yxz9aOQ-fSBZbqjP40eRMDg6GDQHUu3gqKvtDTHz0Jp0etUXDbIn~F~pvEBcMUxUSozEQY92Pycv1KHJvaUhX~CL7VgwymKSDxIGeWNaBP4jK8BTNAH0eGbLRkrijIOFhhSBp4J4npzBgNlzLJ2RfhCisMsLLHhRhfpwmzkW9-6DvsyEp7EfGyQcZgzDHpfbaJrhzAf0hZmkQQ9hBKIJux4UIK7iP0EVwyboq38b-VjK9BrySGajoYlnRH7iZSHA__",
+    name: "Teckpack - AB456789",
   });
 
   const dispatch = useDispatch();
@@ -131,7 +132,9 @@ export default function Library() {
             <h2 className="text-white text-xl font-bold mb-4">
               Add New Techpack Item
             </h2>
-
+            <h2 className="text-white text-[12px] font-thin mb-1">
+              This is the default data for convenience,you can change the value
+            </h2>
             {["image", "name"].map((field) => (
               <input
                 key={field}
