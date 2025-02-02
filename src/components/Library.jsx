@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { setTechpack } from "../utils/techpackSlice";
 import axios from "axios";
 import { BASE_URL } from "../utils/config";
+import Modal from "./Modal";
 
 export default function Library() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -66,7 +67,7 @@ export default function Library() {
                     className="w-4 h-4"
                   />
                 </div>
-                <div className="col-span-4 text-[#EDEEF0] text-[12px] font-[500] flex items-center justify-start pl-2 w-[51px] h-[16px]">
+                <div className="col-span-4 text-[#EDEEF0] text-nowrap text-[12px] font-[500] flex items-center justify-start pl-2 w-[51px] h-[16px]">
                   {data && data.length} / 500
                 </div>
               </div>
@@ -127,41 +128,17 @@ export default function Library() {
         </div>
       </div>
       {modalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-[#212225] p-6 rounded-lg w-[400px] shadow-lg">
-            <h2 className="text-white text-xl font-bold mb-4">
-              Add New Techpack Item
-            </h2>
-            <h2 className="text-white text-[12px] font-thin mb-1">
-              This is the default data for convenience,you can change the value
-            </h2>
-            {["image", "name"].map((field) => (
-              <input
-                key={field}
-                name={field}
-                value={formData[field]}
-                onChange={handleInputChange}
-                placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-                className="w-full mb-3 p-2 rounded bg-[#2A2B2E] text-white"
-              />
-            ))}
-
-            <div className="flex justify-between">
-              <button
-                onClick={() => setModalOpen(false)}
-                className="text-gray-400 hover:text-white"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleSubmit}
-                className="bg-blue-500 px-4 py-2 rounded text-white"
-              >
-                Add
-              </button>
-            </div>
-          </div>
-        </div>
+        <Modal
+          title={"Add New Techpack Item"}
+          subheading={
+            "This is the default data for convenience,you can change the value"
+          }
+          fields={["image", "name"]}
+          onChange={handleInputChange}
+          handleSubmit={handleSubmit}
+          formData={formData}
+          onClick={() => setModalOpen(false)}
+        />
       )}
     </div>
   );

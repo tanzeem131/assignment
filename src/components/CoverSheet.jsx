@@ -6,7 +6,7 @@ import Button from "./Button";
 export default function CoverSheet() {
   return (
     <>
-      <div className="max-w-[1150px] min-w-[250px] min-h-[736px] bg-[#18191B] shadow-custom-1 shadow-custom-1 rounded-[16px] px-[16px] py-[12px] space-y-[16px]">
+      <div className="w-full min-h-fit bg-[#18191B] shadow-custom-1 shadow-custom-1 rounded-[16px] md:px-[16px] px-[4px] md:py-[12px] py-[6px] space-y-[16px]">
         <div className="h-[62px]">
           <div className="flex justify-between">
             <div className="md:space-y-[8px] space-y-0">
@@ -37,7 +37,10 @@ export default function CoverSheet() {
           </div>
           <div className="border-b-2 border-[#272A2D] h-[16px] w-full"></div>
         </div>
-        <div className="h-[246px] md:mt-15 sm:mt-15 mt-15 lg:mt-0 xl:mt-0 flex flex-wrap max-w-[1150px] min-w-[250px] gap-x-4 lg:gap-x-6 md:gap-y-6 gap-y-8 md:overflow-visible overflow-y-auto scrollbar-hide">
+        <div
+          className="min-h-[246px] md:my-10 sm:my-10 my-5 lg:my-10 xl:my-10 flex flex-wrap md:justify-start justify-center 
+          w-full gap-x-4 lg:gap-x-6 md:gap-y-6 gap-y-8 md:overflow-visible overflow-y-auto scrollbar-hide"
+        >
           <Input
             label={"Brand"}
             type={"text"}
@@ -96,21 +99,21 @@ export default function CoverSheet() {
             iconsource={"/calendar_icon.svg"}
           />
         </div>
-        <div className="min-h-[320px] space-x-4 space-y-4 md:mt-8 mt-2">
-          <div className="w-fit h-[20px] sm:text-[14px] text-[12px]  font-[500] text-[#777B84]">
+        <div className="bg-[#18191B] space-x-4 space-y-4 md:my-8 my-2">
+          <div className="w-fit h-[20px] sm:text-[14px] text-[12px] font-[500] text-[#777B84]">
             Upload Image/Sketch
           </div>
           <div className="flex flex-wrap sm:gap-6 gap-2">
             <div>
               <img
                 src="/cover-sheet.png"
-                className="xl:w-[300px] xl:h-[250px] w-[150px] h-[130px]"
+                className="md:w-[300px] md:h-[250px] w-[100px] h-[80px]"
               ></img>
             </div>
             <div>
               <img
                 src="/cover-sheet-2.png"
-                className="xl:w-[300px] xl:h-[250px] w-[150px] h-[130px]"
+                className="md:w-[300px] md:h-[250px] w-[100px] h-[80px]"
               ></img>
             </div>
           </div>

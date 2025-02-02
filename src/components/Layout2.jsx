@@ -8,13 +8,13 @@ import TechpackEditorNavbar from "./TechpackEditorNavbar";
 
 export default function Layout2() {
   return (
-    <div className="grid grid-rows-12 h-[800px] md:p-6 p-0">
-      <div className="row-span-1">
+    <div className="grid grid-rows-12 h-[800px] w-full md:p-6 p-0">
+      <div className="row-span-1 w-full">
         <TechpackEditorNavbar />
       </div>
       <div className="row-span-11 flex md:gap-4 gap-2">
         <TechpackEditorSidebar />
-        <div className="flex md:w-[1150px] w-[260px]">
+        <div className="flex w-full">
           <Routes>
             <Route index element={<TechpackEditorBody />} />
             <Route path="coversheet" element={<CoverSheet />} />

@@ -4,8 +4,8 @@ import Button from "./Button";
 
 export default function TechpackEditorNavbar() {
   return (
-    <div>
-      <div className="flex justify-between items-center xl:w-full lg:w-full md:w-[750px] sm:w-[750px] w-[99%] ">
+    <>
+      <div className="flex justify-between items-center">
         <div className="flex justify-between items-center gap-4">
           <div>
             <Link to={"/"}>
@@ -13,6 +13,7 @@ export default function TechpackEditorNavbar() {
                 iconSrc="/left-key.svg"
                 imgsize={"w-3 h-3"}
                 label=""
+                labeltextsize={"md:text-[14px] text-[12px]"}
                 containerClass={"col-span-2 justify-end"}
                 onClick={() => {
                   return;
@@ -40,6 +41,7 @@ export default function TechpackEditorNavbar() {
                 iconSrc=""
                 imgsize={""}
                 label="Preview"
+                labeltextsize={"md:text-[14px] text-[12px]"}
                 containerClass={"col-span-2 justify-end"}
                 onClick={() => {
                   return;
@@ -48,8 +50,8 @@ export default function TechpackEditorNavbar() {
                 textColSpan={"col-span-5"}
                 rounded={"rounded-[12px]"}
                 gridcols={""}
-                width={"w-[77px]"}
-                height={"h-[36px]"}
+                width={"md:w-[77px] w-[60px]"}
+                height={"md:h-[36px] h-[28px]"}
                 buttonClass={"bg-[#212225]"}
               />
             </Link>
@@ -68,14 +70,14 @@ export default function TechpackEditorNavbar() {
                 textColSpan={"col-span-5"}
                 rounded={"rounded-[12px]"}
                 gridcols={""}
-                width={"w-[57px]"}
-                height={"h-[36px]"}
+                width={"md:w-[57px] w-[45px]"}
+                height={"md:h-[36px] h-[28px]"}
                 buttonClass={"bg-blue-500"}
               />
             </Link>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

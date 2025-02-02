@@ -1,74 +1,78 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Button from "./Button";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { setBom } from "../utils/bomSlice";
 import { BASE_URL } from "../utils/config";
+import useFetchBomData from "../hooks/useFetchBom";
 import Column from "./Column";
+import Modal from "./Modal";
 
 export default function BOMSheet() {
   const [dropdown, setDropdown] = useState(false);
-  const [bomdata, setBomData] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    image:
-      "https://s3-alpha-sig.figma.com/img/5919/4539/93e53bbf126cb1b8939bfca689a1c65b?Expires=1739145600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=cB-UsKw7~Fmjn6GzXVtBAibSZLJUU1P-~jvH7afdIKWnyWX0mYVhSoZTqnSyUIwgWZNny7lqN1gGGS9A2kNcH284ZdjHITtuCyl5u-T-cdAFqNpv1vgLumXrACg14KQ80igjnuPdblKvmtkjn7DQpla8ITeHz0WNCqDg~40gvxCT-duZEr4cAZboFsqhvBSM2Y9LF7OAcSsYkZMNOpIT0BJj39ZAvfmye0rf1cOD8VFMC1lbwppIYp-5KlbqcSs0PgRWWsQOLDaIyU3-LWKyfdg-~vjDnqNlYCNOT3XDnGGcPS97AYG4f75txyZZV9QIeyvND8ddqPZJViDZOZmCeQ__",
-    item: "Secondary Fabric",
-    description:
-      "The primary material used for crafting the main body of the product.",
-    quantity: "2",
-    quality: "polyester",
-    colorCode: "TPG - 2335",
-    supplier: "Nexium",
-  });
+
+  const {
+    bomdata,
+    loading,
+    error,
+    formData,
+    columnData,
+    fetchTableData,
+    handleInputChange,
+    handleColumnInputChange,
+    addBomItem,
+    addColumn,
+    getColumnConfig,
+  } = useFetchBomData(BASE_URL);
+
+  const handleSubmit = async () => {
+    const dataToSubmit = {
+      ...formData,
+      dynamicFields: formData.dynamicFields || {},
+    };
+    const success = await addBomItem(dataToSubmit);
+    if (success) {
+      setModalOpen(false);
+    }
+  };
 
   const handleDropdown = () => {
     setDropdown(!dropdown);
   };
 
-  const dispatch = useDispatch();
-
-  const handleProduct = async () => {
-    try {
-      const res = await axios.get(BASE_URL + "/get-bom");
-      dispatch(setBom(res.data));
-      setBomData(res.data.items);
-    } catch (err) {
-      console.error(err);
+  const handleSubmitColumn = async () => {
+    console.log("Submitting column with data:", columnData);
+    const success = await addColumn(columnData);
+    if (success) {
+      console.log("Column added successfully");
+      setModalOpen(null);
+      await fetchTableData();
+    } else {
+      console.error("Failed to add column");
     }
   };
 
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const { columns, gridTemplateColumns } = getColumnConfig();
 
-  const handleSubmit = async () => {
-    try {
-      await axios.post(BASE_URL + "/add-bom", formData);
-      setModalOpen(false);
-      setFormData({
-        image: "",
-        item: "",
-        description: "",
-        quantity: "",
-        quality: "",
-        colorCode: "",
-        supplier: "",
-      });
-    } catch (error) {
-      console.error("Error adding BOM item:", error);
-    }
-  };
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-[736px] bg-[#18191B] rounded-[16px]">
+        <div className="text-[#EDEEF0]">Loading...</div>
+      </div>
+    );
+  }
 
-  useEffect(() => {
-    handleProduct();
-  }, [modalOpen]);
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-[736px] bg-[#18191B] rounded-[16px]">
+        <div className="text-red-500">Error: {error}</div>
+      </div>
+    );
+  }
 
   return (
-    <>
-      <div className="max-w-[1150px] min-w-[250px] min-h-[736px] bg-[#18191B] shadow-custom-1 shadow-custom-1 rounded-[16px] md:px-[16px] px-[4px] md:py-[12px] py-[6px] space-y-[16px]">
+    <div className="flex md:w-[1250px] w-[310px]">
+      <div className="max-w-[1250px] min-w-[250px] min-h-[736px] bg-[#18191B] shadow-custom-1 shadow-custom-1 rounded-[16px] md:px-[16px] px-[4px] md:py-[12px] py-[6px] space-y-[16px]">
         <div className="h-[62px]">
-          <div className="flex justify-between">
+          <div className="flex justify-between max-w-[1250px] min-w-[250px] min-h-[736px] rounded-[16px] md:px-[16px] px-[4px] md:py-[12px] py-[6px] space-y-[16px]">
             <div className="md:space-y-[8px] space-y-0">
               <div className="sm:text-[16px] text-[14px] md:font-[600] font-[400] text-[#EDEEF0]">
                 Bill of Materials (BOM)
@@ -100,6 +104,7 @@ export default function BOMSheet() {
                     className="p-2 text-[14px] text-[#EDEEF0] cursor-pointer hover:bg-[#2A2B2E]"
                     onClick={() => {
                       setDropdown(false);
+                      setModalOpen("column");
                     }}
                   >
                     New Column
@@ -120,35 +125,27 @@ export default function BOMSheet() {
           <div className="border-b-2 border-[#272A2D] h-[16px] w-full"></div>
         </div>
         <div
-          style={{
-            gridTemplateColumns: "0.3fr 1fr 1fr 2fr 1fr 1fr 1fr 1fr",
-          }}
-          className="h-[90%] grid gap-0 rounded-2xl md:mt-15 sm:mt-15 mt-15 lg:mt-0 xl:mt-0 bg-[#111113] md:p-2 p-1 overflow-y-auto scrollbar-hide scrollbar-none"
+          style={{ gridTemplateColumns }}
+          className="overflow-y-auto scrollbar-hide scrollbar-none overflow-auto h-[650px] grid gap-0 rounded-2xl md:mt-15 sm:mt-15 mt-15 lg:mt-0 xl:mt-0 bg-[#111113] md:p-2 p-1 text-center"
         >
           <Column title="Id" data={bomdata.map((_, index) => index + 1)} />
-          <Column
-            title="Image"
-            data={bomdata.map((item) => item.image)}
-            isImage={true}
-          />
-          <Column title="Item" data={bomdata.map((item) => item.item)} />
-          <Column
-            title="Description"
-            data={bomdata.map((item) => item.description)}
-          />
-          <Column
-            title="Quantity"
-            data={bomdata.map((item) => item.quantity)}
-          />
-          <Column title="Quality" data={bomdata.map((item) => item.quality)} />
-          <Column
-            title="Color Code"
-            data={bomdata.map((item) => item.colorCode)}
-          />
-          <Column
-            title="Supplier"
-            data={bomdata.map((item) => item.supplier)}
-          />
+
+          {columns.map((column) => (
+            <Column
+              key={column}
+              title={column}
+              data={bomdata.map((item) => {
+                let value = item[column];
+                if (item.dynamicFields && column in item.dynamicFields) {
+                  value = item.dynamicFields[column];
+                }
+                return typeof value === "object"
+                  ? JSON.stringify(value)
+                  : value;
+              })}
+              isImage={column.toLowerCase() === "image"}
+            />
+          ))}
         </div>
       </div>
       {modalOpen && (
@@ -160,24 +157,41 @@ export default function BOMSheet() {
             <h2 className="text-white text-[12px] font-thin mb-1">
               This is the default data for convenience,you can change the value
             </h2>
-            {[
-              "image",
-              "item",
-              "description",
-              "quantity",
-              "quality",
-              "colorCode",
-              "supplier",
-            ].map((field) => (
-              <input
-                key={field}
-                name={field}
-                value={formData[field]}
-                onChange={handleInputChange}
-                placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-                className="w-full mb-3 p-2 rounded bg-[#2A2B2E] text-white"
-              />
-            ))}
+            {bomdata.length > 0 &&
+              Object.keys(bomdata[0])
+                .filter(
+                  (field) =>
+                    ![
+                      "_id",
+                      "createdAt",
+                      "updatedAt",
+                      "__v",
+                      "dynamicFields",
+                    ].includes(field)
+                )
+                .map((field) => (
+                  <input
+                    key={field}
+                    name={field}
+                    value={formData[field] || ""}
+                    onChange={handleInputChange}
+                    placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+                    className="w-full mb-3 p-2 rounded bg-[#2A2B2E] text-white"
+                  />
+                ))}
+
+            {bomdata.length > 0 &&
+              bomdata[0].dynamicFields &&
+              Object.keys(bomdata[0].dynamicFields).map((field) => (
+                <input
+                  key={field}
+                  name={field}
+                  value={formData.dynamicFields[field] || ""}
+                  onChange={handleInputChange}
+                  placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+                  className="w-full mb-3 p-2 rounded bg-[#2A2B2E] text-white"
+                />
+              ))}
 
             <div className="flex justify-between">
               <button
@@ -196,6 +210,19 @@ export default function BOMSheet() {
           </div>
         </div>
       )}
-    </>
+      {modalOpen === "column" && (
+        <Modal
+          title={"Add New Column"}
+          subheading={
+            "This is the default data for convenience,you can change the value"
+          }
+          fields={["columnName", "defaultValue"]}
+          handleSubmit={handleSubmitColumn}
+          onChange={handleColumnInputChange}
+          formData={columnData}
+          onClick={() => setModalOpen(null)}
+        />
+      )}
+    </div>
   );
 }
